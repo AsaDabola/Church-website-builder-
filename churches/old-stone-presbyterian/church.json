@@ -1,0 +1,89 @@
+{
+  "slug": "old-stone-presbyterian",
+  "name": "Old Stone Presbyterian Church",
+  "shortName": "Old Stone Church",
+  "tier": "ministry",
+  "preset": "heritage",
+  "demo": true,
+  "denomination": "Presbyterian Church (U.S.A.)",
+  "tagline": "Worshiping on Church Street since 1798",
+  "logo": "images/logo.svg",
+  "colors": { "primary": "#7a1f2b", "accent": "#b48a3c" },
+  "seo": { "description": "Old Stone Presbyterian Church in Larkfield, NJ. Traditional worship with choir and organ every Sunday at 10:00 AM. All are welcome." },
+  "contact": {
+    "email": "office@oldstone-demo.example",
+    "phone": "(609) 555-0142",
+    "address": { "street": "12 Church Street", "city": "Larkfield", "state": "NJ", "zip": "08000" },
+    "officeHours": "Tuesday to Thursday, 9 AM to 1 PM"
+  },
+  "serviceTimes": [
+    { "day": "Sunday", "time": "8:30 AM", "label": "Early Service", "note": "Spoken liturgy in the chapel" },
+    { "day": "Sunday", "time": "10:00 AM", "label": "Worship with Choir", "note": "Nursery and Sunday school available" },
+    { "day": "Wednesday", "time": "7:00 PM", "label": "Bible Study", "note": "Fellowship Hall" }
+  ],
+  "specialServices": [
+    { "title": "Christmas Eve Lessons & Carols", "date": "2026-12-24", "times": ["5:00 PM", "11:00 PM"], "location": "Sanctuary", "note": "The 11 PM service closes with candlelight and Silent Night." },
+    { "title": "Easter Sunrise Service", "date": "2027-03-28", "times": ["6:30 AM"], "location": "Church lawn", "note": "Breakfast follows in Fellowship Hall." }
+  ],
+  "hero": {
+    "headline": "A place of worship, rooted in history and open to all",
+    "subhead": "Traditional worship, beautiful music and a warm congregation in the heart of Larkfield.",
+    "image": "images/hero.svg"
+  },
+  "welcome": {
+    "heading": "Welcome to Old Stone",
+    "paragraphs": [
+      "For more than two centuries, people have gathered in our sanctuary to worship God, hear Scripture and care for one another. Whether you grew up Presbyterian or have never been to church, you will find a seat and a friendly face here.",
+      "Join us for hymns sung with our choir and pipe organ, a thoughtful sermon and coffee hour afterward."
+    ]
+  },
+  "about": {
+    "story": [
+      "Old Stone Presbyterian Church was founded in 1798 by farming families who met in a log meetinghouse on this same corner. The stone sanctuary you see today was completed in 1834 using fieldstone cleared from members' land.",
+      "Today we are a congregation of about 180 members: lifelong Larkfield families, young couples and newcomers from across Mercer County. We run the town's oldest food pantry and host scouts, recovery groups and community concerts throughout the year."
+    ],
+    "beliefs": [
+      { "title": "God's grace", "text": "We believe we are saved by grace through faith in Jesus Christ, not by our own efforts." },
+      { "title": "Scripture", "text": "The Bible is the unique and authoritative witness to Jesus Christ, read in community and guided by the Holy Spirit." },
+      { "title": "Sacraments", "text": "We celebrate Baptism and the Lord's Supper as signs of God's love. All baptized Christians are welcome at the Table." },
+      { "title": "Service", "text": "Faith is lived out in love for our neighbors, especially those who are hungry, lonely or in need." }
+    ]
+  },
+  "staff": [
+    { "name": "Rev. Margaret Ellison", "role": "Pastor", "bio": "Pastor Margaret has served Old Stone since 2014. She loves long walks along the canal, choral music and a good mystery novel." },
+    { "name": "Thomas Reyes", "role": "Director of Music", "bio": "Thomas leads our Chancel Choir and plays the 1912 Möller pipe organ." },
+    { "name": "Linda Park", "role": "Church Administrator", "bio": "Linda keeps the office running and is usually the first voice you hear when you call." }
+  ],
+  "ministries": [
+    { "name": "Chancel Choir", "description": "Singers of all ability levels lead music in Sunday worship.", "schedule": "Thursdays at 7:30 PM" },
+    { "name": "Larkfield Food Pantry", "description": "Serving about 60 families each week since 1983. Volunteers sort, pack and deliver.", "schedule": "Saturdays, 9 to 11 AM" },
+    { "name": "Sunday School", "description": "Bible stories, crafts and songs for children ages 3 to 11 during the 10 AM service.", "schedule": "Sundays during worship" },
+    { "name": "Presbyterian Women", "description": "Circles for study, prayer and mission projects.", "schedule": "Second Tuesday of each month" },
+    { "name": "Youth Fellowship", "description": "Middle and high schoolers meet for games, faith conversations and service trips.", "schedule": "Sundays at 6 PM" }
+  ],
+  "sermons": { "note": "Sermons are recorded each Sunday and posted the same afternoon." },
+  "events": {
+    "highlights": [
+      { "title": "Harvest Supper", "date": "November 14", "description": "Our annual turkey dinner. Proceeds support the food pantry." },
+      { "title": "Advent Concert", "date": "December 13", "description": "The Chancel Choir and brass quintet. Free and open to the community." },
+      { "title": "Christmas Eve Lessons & Carols", "date": "December 24", "description": "Services at 5 PM and 11 PM." }
+    ]
+  },
+  "giving": {
+    "url": "https://example.org/give",
+    "provider": "a secure online giving page",
+    "mailTo": "Mail checks payable to Old Stone Presbyterian Church, 12 Church Street, Larkfield, NJ 08000."
+  },
+  "visit": {
+    "intro": "We would be delighted to welcome you. Here is what a Sunday morning at Old Stone looks like.",
+    "expect": [
+      { "title": "Traditional worship", "text": "Hymns, choir anthems, prayers and Scripture readings, with the order of worship printed in your bulletin." },
+      { "title": "Greeters at the door", "text": "Ushers will hand you a bulletin and help you find a seat. Large-print bulletins and hymnals are available." },
+      { "title": "Coffee hour", "text": "Stay after the 10 AM service for coffee and homemade treats in Fellowship Hall." }
+    ],
+    "kids": "Children are always welcome in worship. A staffed nursery is available for infants and toddlers, and Sunday school meets during the 10 AM service.",
+    "parking": "Park in our lot behind the church on Mill Lane, or on Church Street.",
+    "accessibility": "A ramp and accessible restroom are at the Mill Lane entrance. Hearing assistance devices are available from the ushers."
+  },
+  "social": { "facebook": "https://www.facebook.com/" }
+}

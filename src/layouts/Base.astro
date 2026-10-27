@@ -1,0 +1,91 @@
+---
+import '../styles/global.css';
+import { themeFor } from '../styles/presets.mjs';
+import { church, customCss, brand, displayName, img } from '../lib/church';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Announcement from '../components/Announcement.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+const theme = themeFor(church);
+const pageTitle = title ? `${title} | ${church.name}` : church.tagline ? `${church.name} | ${church.tagline}` : church.name;
+const metaDescription =
+  description ?? church.seo?.description ?? `${church.name} in ${church.contact.address?.city ?? 'your community'}. Service times, directions and what to expect on your first visit.`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = church.hero.image ? new URL(img(church.hero.image)!, Astro.site).href : undefined;
+const hideFromSearch = church.demo || church.preview;
+
+// schema.org data so Google can show service times and address.
+const a = church.contact.address;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Church',
+  name: church.name,
+  url: Astro.site?.href,
+  telephone: church.contact.phone,
+  email: church.contact.email,
+  logo: church.logo ? new URL(img(church.logo)!, Astro.site).href : undefined,
+  address: a && { '@type': 'PostalAddress', streetAddress: a.street, addressLocality: a.city, addressRegion: a.state, postalCode: a.zip, addressCountry: 'US' },
+  sameAs: Object.values(church.social).filter(Boolean),
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <link rel="canonical" href={canonical} />
+    {hideFromSearch && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <link rel="icon" href={church.logo ? img(church.logo) : '/favicon.svg'} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={theme.fontsHref} />
+    <style is:inline set:html={theme.css}></style>
+    {customCss && <style is:inline set:html={customCss}></style>}
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)}></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    {church.demo && (
+      <div class="demo-ribbon">
+        Demo site for a fictional church, built by <a href={`https://${brand.domain}`}>{brand.name}</a>.
+      </div>
+    )}
+    {church.preview && (
+      <div class="demo-ribbon">
+        Free redesign preview for {displayName} by <a href={`https://${brand.domain}`}>{brand.name}</a>. This is not the church's official website.
+      </div>
+    )}
+    <Announcement />
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script is:inline>
+      // Hide special services and announcements whose date has passed (visitor's local date).
+      (function () {
+        var d = new Date();
+        var today = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+        var shown = false;
+        document.querySelectorAll('[data-until]').forEach(function (el) {
+          if (el.getAttribute('data-until') < today) el.remove();
+          else if (el.classList.contains('announce')) {
+            if (!shown) { el.hidden = false; shown = true; } else el.remove();
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

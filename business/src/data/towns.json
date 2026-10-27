@@ -1,0 +1,13 @@
+{
+  "_note": "Local SEO pages, one per town: /church-website-design/<slug>/. A page is only built once it has a real local example and genuinely specific content (thin copy-paste pages get ignored by Google). Fill 'example' with a client in or near that town.",
+  "towns": [
+    {
+      "slug": "hamilton-nj",
+      "town": "Hamilton",
+      "state": "NJ",
+      "intro": "",
+      "local": "",
+      "example": null
+    }
+  ]
+}

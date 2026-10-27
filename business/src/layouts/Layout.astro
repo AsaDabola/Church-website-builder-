@@ -1,0 +1,104 @@
+---
+import { brand } from '../data/site.mjs';
+interface Props { title?: string; description?: string }
+const { title, description = `Done-for-you church websites in ${brand.region}. A flat monthly fee covers hosting, security and edits, so your staff never has to touch a website builder.` } = Astro.props;
+const fullTitle = title ? `${title} | ${brand.name}` : `${brand.name} | Church websites, done for you`;
+const path = Astro.url.pathname;
+const links = [
+  { href: '/#how', label: 'How it works' },
+  { href: '/pricing/', label: 'Pricing' },
+  { href: '/#examples', label: 'Examples' },
+  { href: '/#faq', label: 'FAQ' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <link rel="icon" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&display=swap" />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'ProfessionalService', name: brand.name, url: `https://${brand.domain}`, email: brand.email, telephone: brand.phone, areaServed: brand.region, description: 'Website design, hosting and maintenance for churches.' })}></script>
+  </head>
+  <body>
+    <header class="top">
+      <div class="wrap bar">
+        <a class="logo" href="/">{brand.name}</a>
+        <nav>
+          {links.map((l) => <a href={l.href}>{l.label}</a>)}
+          <a class="btn small" href={brand.bookingUrl}>Book a 20-minute call</a>
+        </nav>
+      </div>
+    </header>
+    <main><slot /></main>
+    <footer class="foot">
+      <div class="wrap foot-grid">
+        <div>
+          <div class="logo">{brand.name}</div>
+          <p>Church websites, done for you.<br />Serving {brand.region}.</p>
+        </div>
+        <div>
+          <p><a href={`mailto:${brand.email}`}>{brand.email}</a><br /><a href={`tel:${brand.phone.replace(/[^\d+]/g, '')}`}>{brand.phone}</a><br />{brand.mailingAddress}</p>
+        </div>
+        <div>
+          <p><a href="/pricing/">Pricing</a><br /><a href="/audit/">Free website audit</a><br /><a href="/intake/">Client intake form</a><br /><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></p>
+        </div>
+      </div>
+      <div class="wrap fine">© {new Date().getFullYear()} {brand.name}</div>
+    </footer>
+  </body>
+</html>
+<style is:global>
+  :root { --ink: #1b1f24; --muted: #5b636e; --line: #e4e7eb; --bg: #fbfaf7; --card: #fff; --brand: #2d4a7a; --brand-2: #e2a33a; --radius: 14px; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, system-ui, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; font-size: 1.05rem; }
+  h1, h2, h3 { font-family: Fraunces, Georgia, serif; font-weight: 600; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -0.01em; }
+  h1 { font-size: clamp(2.3rem, 5.5vw, 3.8rem); }
+  h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+  h3 { font-size: 1.3rem; }
+  a { color: var(--brand); }
+  img { max-width: 100%; display: block; }
+  .wrap { width: min(1120px, 100% - 2.5rem); margin-inline: auto; }
+  .narrow { width: min(760px, 100% - 2.5rem); margin-inline: auto; }
+  .top { background: rgba(251, 250, 247, .92); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 10; border-bottom: 1px solid var(--line); }
+  .bar { display: flex; align-items: center; justify-content: space-between; min-height: 68px; gap: 1rem; flex-wrap: wrap; }
+  .logo { font-family: Fraunces, Georgia, serif; font-size: 1.35rem; font-weight: 600; color: var(--ink); text-decoration: none; }
+  nav { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; align-items: center; }
+  nav a { color: var(--ink); text-decoration: none; font-weight: 500; font-size: .97rem; }
+  nav a.btn { color: #fff; }
+  @media (max-width: 760px) { nav a:not(.btn) { display: none; } }
+  .btn { display: inline-block; background: var(--brand); color: #fff; padding: .85rem 1.4rem; border-radius: 999px; font-weight: 600; text-decoration: none; border: 2px solid var(--brand); font: inherit; font-weight: 600; cursor: pointer; }
+  .btn:hover { background: #1f3558; border-color: #1f3558; color: #fff; }
+  .btn.ghost { background: transparent; color: var(--brand); }
+  .btn.ghost:hover { background: var(--brand); color: #fff; }
+  .btn.small { padding: .5rem 1rem; font-size: .92rem; }
+  .section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+  .section.tint { background: #f1efe8; }
+  .eyebrow { text-transform: uppercase; letter-spacing: .14em; font-size: .78rem; font-weight: 700; color: #b07a1c; display: block; margin-bottom: .6rem; }
+  .lead { font-size: 1.2rem; color: var(--muted); }
+  .grid { display: grid; gap: 1.25rem; }
+  .g3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+  .g2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem; }
+  .muted { color: var(--muted); }
+  .foot { background: #15181c; color: #c9ced6; padding: 3rem 0 1.5rem; margin-top: 0; }
+  .foot a { color: #fff; }
+  .foot .logo { color: #fff; margin-bottom: .5rem; }
+  .foot-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+  .fine { border-top: 1px solid #2a2f36; margin-top: 2rem; padding-top: 1rem; font-size: .85rem; }
+  form { display: grid; gap: 1rem; }
+  label { display: grid; gap: .35rem; font-weight: 600; font-size: .96rem; }
+  input, textarea, select { font: inherit; padding: .7rem .85rem; border: 1px solid #cfd5dc; border-radius: 10px; background: #fff; width: 100%; }
+  textarea { min-height: 110px; }
+  fieldset { border: 1px solid var(--line); border-radius: var(--radius); padding: 1.25rem 1.25rem .5rem; background: #fff; display: grid; gap: 1rem; margin: 0; }
+  legend { font-family: Fraunces, Georgia, serif; font-size: 1.2rem; padding: 0 .4rem; }
+  .hint { font-weight: 400; color: var(--muted); font-size: .9rem; }
+  .prose h2 { font-size: 1.5rem; margin-top: 2rem; }
+</style>

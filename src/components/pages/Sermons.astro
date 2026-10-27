@@ -1,0 +1,20 @@
+---
+import PageHero from '../PageHero.astro';
+import EmbedPlaceholder from '../EmbedPlaceholder.astro';
+import { church, sermonEmbedUrl } from '../../lib/church';
+const embed = sermonEmbedUrl();
+const s = church.sermons;
+---
+<PageHero title="Sermons" intro={s?.note ?? 'Watch or listen to recent messages. New sermons appear here automatically each week.'} />
+<section class="section">
+  <div class="container">
+    {embed && <div class="embed"><iframe src={embed} title="Sermon videos" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>}
+    {!embed && church.demo && <EmbedPlaceholder text="The church's latest YouTube sermons play here, and update themselves every week." />}
+    <div class="btn-row" style="margin-top:1.5rem">
+      {church.livestream && <a class="btn" href={church.livestream.url}>Watch live</a>}
+      {church.social.youtube && <a class="btn ghost" href={church.social.youtube}>YouTube channel</a>}
+      {s?.podcastUrl && <a class="btn ghost" href={s.podcastUrl}>Podcast</a>}
+    </div>
+    {church.livestream?.note && <p class="muted" style="margin-top:1rem">{church.livestream.note}</p>}
+  </div>
+</section>

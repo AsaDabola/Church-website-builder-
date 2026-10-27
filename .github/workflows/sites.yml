@@ -1,0 +1,62 @@
+name: Build and deploy sites
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      sites:
+        description: 'Space-separated slugs to deploy (blank = all churches and the business site)'
+        required: false
+
+concurrency:
+  group: sites-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run validate
+
+      - name: Work out which sites changed
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ -n "${{ inputs.sites }}" ]; then SITES="${{ inputs.sites }}"; else SITES="$(node scripts/changed-sites.mjs)"; fi
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            SITES="$(node scripts/changed-sites.mjs ${{ github.event.pull_request.base.sha }} ${{ github.sha }})"
+          else
+            SITES="$(node scripts/changed-sites.mjs ${{ github.event.before }} ${{ github.sha }})"
+          fi
+          SITES="$(echo $SITES | tr '\n' ' ')"
+          echo "Sites: ${SITES:-none}"
+          echo "sites=$SITES" >> "$GITHUB_OUTPUT"
+          echo "churches=$(echo $SITES | tr ' ' '\n' | grep -vx business | tr '\n' ' ')" >> "$GITHUB_OUTPUT"
+          echo "business=$(echo $SITES | tr ' ' '\n' | grep -qx business && echo yes || echo no)" >> "$GITHUB_OUTPUT"
+
+      - name: Build churches
+        if: steps.changed.outputs.churches != ''
+        run: npm run build -- ${{ steps.changed.outputs.churches }}
+      - name: Check links
+        if: steps.changed.outputs.churches != ''
+        run: npm run check-links -- ${{ steps.changed.outputs.churches }}
+      - name: Build business site
+        if: steps.changed.outputs.business == 'yes'
+        run: npm run business:build
+
+      - name: Deploy to Cloudflare Pages
+        if: github.event_name != 'pull_request' && steps.changed.outputs.sites != ''
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/deploy.mjs ${{ steps.changed.outputs.sites }}

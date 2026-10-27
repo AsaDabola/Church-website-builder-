@@ -1,0 +1,23 @@
+name: Monthly maintenance
+
+# First of the month: rebuild every site and check every link, including outside ones
+# (giving pages, social links). A failure emails the repo owner; fix, then run `npm run report`.
+on:
+  schedule:
+    - cron: '17 13 1 * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm outdated || true
+      - run: npm run validate
+      - run: npm run build:all
+      - run: npm run check-links -- --external

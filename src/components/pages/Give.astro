@@ -1,0 +1,13 @@
+---
+import PageHero from '../PageHero.astro';
+import { church } from '../../lib/church';
+const g = church.giving!;
+---
+<PageHero title="Give" intro={g.message ?? 'Thank you for your generosity. Your gifts support our ministry here and in our community.'} />
+<section class="section">
+  <div class="narrow" style="text-align:center">
+    <p class="lead">Giving online is safe and secure{g.provider ? ` through ${g.provider}` : ''}. You can give once or set up recurring gifts.</p>
+    <p><a class="btn" href={g.url} rel="noopener">Give online</a></p>
+    {g.mailTo && <p class="muted" style="margin-top:2rem">Prefer to give by check? {g.mailTo}</p>}
+  </div>
+</section>

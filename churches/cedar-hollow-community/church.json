@@ -1,0 +1,53 @@
+{
+  "slug": "cedar-hollow-community",
+  "name": "Cedar Hollow Community Church",
+  "shortName": "Cedar Hollow Church",
+  "tier": "essentials",
+  "preset": "harvest",
+  "demo": true,
+  "denomination": "Community Church",
+  "tagline": "A country church with an open door",
+  "logo": "images/logo.svg",
+  "seo": { "description": "Cedar Hollow Community Church on Route 000 in Cedar Hollow, NJ. Sunday worship at 10:30 AM, potluck the first Sunday of every month." },
+  "contact": {
+    "email": "pastor@cedarhollow-demo.example",
+    "phone": "(609) 555-0119",
+    "address": { "street": "2280 Hollow Road", "city": "Cedar Hollow", "state": "NJ", "zip": "08000" }
+  },
+  "serviceTimes": [
+    { "day": "Sunday", "time": "9:30 AM", "label": "Sunday School", "note": "Classes for all ages" },
+    { "day": "Sunday", "time": "10:30 AM", "label": "Worship" },
+    { "day": "Wednesday", "time": "6:30 PM", "label": "Prayer Meeting" }
+  ],
+  "specialServices": [
+    { "title": "Christmas Eve Candlelight Service", "date": "2026-12-24", "times": ["6:00 PM"], "note": "Hot cider in the fellowship room afterward." }
+  ],
+  "hero": {
+    "headline": "Neighbors, friends and family in Christ",
+    "subhead": "A small church where everybody knows your name, out on Hollow Road since 1911.",
+    "image": "images/hero.svg"
+  },
+  "welcome": {
+    "heading": "Come on in",
+    "paragraphs": [
+      "We're a congregation of about 70 folks from the farms and towns around Cedar Hollow. Our services are simple: old hymns and new songs, a message from the Bible and plenty of time to catch up afterward.",
+      "First Sunday of the month, stay for our potluck lunch. There's always more than enough."
+    ]
+  },
+  "about": {
+    "story": [
+      "Cedar Hollow Community Church was built by local farmers in 1911 and has been a gathering place for the community ever since: Sunday worship, weddings, funerals, 4-H meetings and the famous strawberry festival every June.",
+      "We are a Bible-believing church that welcomes everyone. Whether you've been coming for 60 years or this is your first time, you're family here."
+    ]
+  },
+  "staff": [
+    { "name": "Pastor Dale Whitaker", "role": "Pastor", "bio": "Pastor Dale has served Cedar Hollow for 18 years. When he's not preaching, you'll find him at the hardware store or on his tractor." },
+    { "name": "Ruth Whitaker", "role": "Music & Sunday School", "bio": "Ruth plays piano on Sundays and teaches the children's class." }
+  ],
+  "visit": {
+    "intro": "We'd be glad to see you on Sunday. Here's what to know before you come.",
+    "kids": "Kids are welcome in worship, and there's a children's Sunday school class at 9:30 AM.",
+    "parking": "Plenty of parking in the gravel lot beside the church."
+  },
+  "social": { "facebook": "https://www.facebook.com/" }
+}

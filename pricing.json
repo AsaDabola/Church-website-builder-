@@ -1,0 +1,45 @@
+{
+  "_note": "Single source for prices. The business site and scripts/stripe-setup.mjs both read this file.",
+  "tiers": [
+    {
+      "id": "essentials",
+      "name": "Essentials",
+      "setup": 99,
+      "setupLabel": "setup",
+      "monthly": 49,
+      "summary": "A clean, fast site that answers every visitor's first questions.",
+      "features": ["Professionally designed template site", "Hosting, SSL, backups and security updates", "Service times, about, plan-a-visit and contact pages", "1 small edit per month"]
+    },
+    {
+      "id": "ministry",
+      "name": "Ministry",
+      "setup": 299,
+      "setupLabel": "setup",
+      "monthly": 99,
+      "popular": true,
+      "summary": "Everything a growing church needs, kept up to date for you.",
+      "features": ["Everything in Essentials", "Your colors, fonts and logo", "Sermon page that updates itself from YouTube", "Events page synced with your Google Calendar", "Online giving and ministries pages", "Up to 1 hour of edits per month"]
+    },
+    {
+      "id": "custom",
+      "name": "Custom",
+      "setup": 1500,
+      "setupLabel": "build",
+      "monthly": 199,
+      "summary": "A one-of-a-kind design built around your church.",
+      "features": ["Everything in Ministry", "Unique custom design", "Up to 3 hours of edits per month", "Priority turnaround: edits in 1 to 2 business days", "Two review rounds before launch"]
+    }
+  ],
+  "addons": [
+    { "id": "edit-hour", "name": "Extra edit hours", "price": 60, "unit": "per hour" },
+    { "id": "domain-email", "name": "Domain registration and email setup", "price": 50, "unit": "one-time" },
+    { "id": "livestream", "name": "Livestream page (YouTube or Facebook)", "price": 75, "unit": "one-time" },
+    { "id": "event-page", "name": "Event or VBS landing page", "price": 150, "unit": "one-time" }
+  ],
+  "terms": {
+    "minimumMonths": 12,
+    "earlyExitFee": 300,
+    "annualPrepayMonths": 10,
+    "launchOfferSpots": 5
+  }
+}

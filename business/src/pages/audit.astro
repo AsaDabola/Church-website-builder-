@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Form from '../components/Form.astro';
+const checks = [
+  ['Mobile', 'Does it work on a phone, where most visitors find you?'],
+  ['Speed', 'Does it load in under 3 seconds?'],
+  ['Service times', 'Can a visitor see when to come, right on the home page?'],
+  ['Giving', 'Is there an easy online giving link?'],
+  ['Contact', 'Can people find your address, phone and email?'],
+];
+---
+<Layout title="Free church website audit" description="A free 5-point check of your church website: mobile, speed, service times, giving and contact info.">
+  <section class="section">
+    <div class="wrap grid g2" style="align-items:start">
+      <div>
+        <span class="eyebrow">Free, no obligation</span>
+        <h1>A free 5-point audit of your church website</h1>
+        <p class="lead">We'll check your site against what first-time visitors look for and email you a short report with screenshots. Takes us a day or two.</p>
+        <ol class="checks">{checks.map(([t, d]) => <li><strong>{t}</strong><br /><span class="muted">{d}</span></li>)}</ol>
+      </div>
+      <div class="card">
+        <h2 style="font-size:1.6rem">Request your audit</h2>
+        <Form subject="Website audit request" submit="Send me my audit">
+          <label>Church name <input name="church_name" required /></label>
+          <label>Current website <input name="website" placeholder="yourchurch.org" required /></label>
+          <label>Your name <input name="name" required /></label>
+          <label>Email <input name="email" type="email" required /></label>
+          <label>Anything you already know is wrong with it? <textarea name="message"></textarea></label>
+        </Form>
+      </div>
+    </div>
+  </section>
+</Layout>
+<style>
+  .checks { padding-left: 1.2rem; }
+  .checks li { margin-bottom: .9rem; }
+</style>

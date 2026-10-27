@@ -1,0 +1,30 @@
+---
+import PageHero from '../PageHero.astro';
+import ChurchForm from '../ChurchForm.astro';
+import { church, fullAddress, directionsUrl, mapEmbedUrl } from '../../lib/church';
+const c = church.contact;
+---
+<PageHero title="Contact us" intro="We'd love to hear from you. Send a message, ask a question or share a prayer request." />
+<section class="section">
+  <div class="container split">
+    <div>
+      <h2>Get in touch</h2>
+      {fullAddress() && <p><strong>Address</strong><br />{fullAddress()}<br /><a href={directionsUrl()}>Directions</a></p>}
+      {c.phone && <p><strong>Phone</strong><br /><a href={`tel:${c.phone.replace(/[^\d+]/g, '')}`}>{c.phone}</a></p>}
+      {c.email && <p><strong>Email</strong><br /><a href={`mailto:${c.email}`}>{c.email}</a></p>}
+      {c.officeHours && <p><strong>Office hours</strong><br />{c.officeHours}</p>}
+      {mapEmbedUrl() && <iframe class="map" src={mapEmbedUrl()} title="Map" loading="lazy"></iframe>}
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h2 style="font-size:1.6rem">Send a message</h2>
+        <ChurchForm kind="contact" />
+      </div>
+      <div class="card">
+        <h2 style="font-size:1.6rem">Prayer requests</h2>
+        <p class="muted">Our pastors and prayer team pray over every request.</p>
+        <ChurchForm kind="prayer" />
+      </div>
+    </div>
+  </div>
+</section>

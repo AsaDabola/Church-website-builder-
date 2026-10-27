@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.astro/
+business/dist/
+business/.astro/
+.env
+.DS_Store
+# Lead data is regenerated and contains contact details; keep it out of git.
+leads/data/
+reports/

@@ -1,0 +1,49 @@
+---
+import PageHero from '../PageHero.astro';
+import ServiceTimes from '../ServiceTimes.astro';
+import SpecialServices from '../SpecialServices.astro';
+import ChurchForm from '../ChurchForm.astro';
+import { church, fullAddress, directionsUrl, mapEmbedUrl } from '../../lib/church';
+const v = church.visit;
+const defaults = [
+  { title: 'A warm welcome', text: 'Someone will meet you at the door, show you around and help you find a seat.' },
+  { title: 'Come as you are', text: 'You will see everything from suits to jeans. Wear whatever is comfortable.' },
+  { title: 'About an hour', text: 'Our service includes music, prayer and a message from the Bible, and lasts about an hour.' },
+];
+const expect = v.expect.length ? v.expect : defaults;
+---
+<PageHero title="Plan your visit" intro={v.intro ?? "Visiting a new church can feel like a big step. Here's everything you need to know before Sunday."} />
+<section class="section">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">When</span><h2>Service times</h2></div>
+    <ServiceTimes />
+    <SpecialServices />
+  </div>
+</section>
+<section class="section alt">
+  <div class="container">
+    <div class="section-head"><span class="eyebrow">What to expect</span><h2>Your first Sunday</h2></div>
+    <div class="grid three">
+      {expect.map((e) => <div class="card"><h3>{e.title}</h3><p style="margin:0">{e.text}</p></div>)}
+      {v.kids && <div class="card"><h3>For your kids</h3><p style="margin:0">{v.kids}</p></div>}
+      {v.parking && <div class="card"><h3>Parking</h3><p style="margin:0">{v.parking}</p></div>}
+      {v.accessibility && <div class="card"><h3>Accessibility</h3><p style="margin:0">{v.accessibility}</p></div>}
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container split">
+    <div>
+      <span class="eyebrow">Where</span>
+      <h2>Find us</h2>
+      {fullAddress() && <p class="lead">{fullAddress()}</p>}
+      {directionsUrl() && <p><a class="btn ghost" href={directionsUrl()}>Get directions</a></p>}
+      {mapEmbedUrl() && <iframe class="map" src={mapEmbedUrl()} title="Map" loading="lazy"></iframe>}
+    </div>
+    <div class="card">
+      <h2 style="font-size:1.6rem">Let us know you're coming</h2>
+      <p class="muted">Totally optional. We'll save you a seat and have someone ready to say hello.</p>
+      <ChurchForm kind="visit" />
+    </div>
+  </div>
+</section>

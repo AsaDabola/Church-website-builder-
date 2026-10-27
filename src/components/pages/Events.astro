@@ -1,0 +1,32 @@
+---
+import PageHero from '../PageHero.astro';
+import EmbedPlaceholder from '../EmbedPlaceholder.astro';
+import { church, calendarEmbedUrl } from '../../lib/church';
+const cal = calendarEmbedUrl();
+const highlights = church.events?.highlights ?? [];
+---
+<PageHero title="Events" intro="What's happening at church. The calendar updates on its own whenever the office adds an event." />
+{highlights.length > 0 && (
+  <section class="section">
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">Don't miss</span><h2>Coming up</h2></div>
+      <div class="grid three">
+        {highlights.map((e) => (
+          <div class="card">
+            {e.date && <div class="eyebrow">{e.date}</div>}
+            <h3>{e.title}</h3>
+            {e.description && <p style="margin:0">{e.description}</p>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+{(cal || church.demo) && (
+  <section class:list={['section', { alt: highlights.length > 0 }]}>
+    <div class="container">
+      <div class="section-head"><span class="eyebrow">Calendar</span><h2>Full calendar</h2></div>
+      {cal ? <iframe class="calendar" src={cal} title="Church calendar" loading="lazy"></iframe> : <EmbedPlaceholder text="The church's own Google Calendar shows here. When the office adds an event, the site updates by itself." />}
+    </div>
+  </section>
+)}

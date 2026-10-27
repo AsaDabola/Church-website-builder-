@@ -1,0 +1,15 @@
+{
+  "_note": "Your business details. Replace the placeholders once the name and domain are picked; every site, preview URL and email draft reads from here.",
+  "name": "Lampstand Sites",
+  "domain": "yourbrand.com",
+  "email": "hello@yourbrand.com",
+  "editsEmail": "edits@yourbrand.com",
+  "phone": "(609) 555-0100",
+  "owner": "Asa",
+  "mailingAddress": "PO Box 000, Trenton, NJ 08601",
+  "bookingUrl": "https://cal.com/yourbrand/20min",
+  "region": "Central New Jersey",
+  "formAction": "https://api.web3forms.com/submit",
+  "formAccessKey": "REPLACE-with-your-Web3Forms-or-Formspree-key",
+  "pagesProjectPrefix": "lampstand-"
+}

@@ -1,0 +1,13 @@
+---
+import { church } from '../lib/church';
+---
+<div class="times">
+  {church.serviceTimes.map((t) => (
+    <div class="time">
+      <div class="day">{t.day}</div>
+      <div class="when">{t.time}</div>
+      {t.label && <div class="label">{t.label}</div>}
+      {t.note && <div class="note">{t.note}</div>}
+    </div>
+  ))}
+</div>

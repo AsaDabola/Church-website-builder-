@@ -1,0 +1,58 @@
+---
+// Contact, prayer request and plan-a-visit forms. They post to the form service set in
+// church.json "forms". Without one, the form falls back to opening the visitor's email app.
+import { church, brand } from '../lib/church';
+
+interface Props { kind: 'contact' | 'prayer' | 'visit' }
+const { kind } = Astro.props;
+const subjects = {
+  contact: `Website message for ${church.name}`,
+  prayer: `Prayer request for ${church.name}`,
+  visit: `Planning a visit to ${church.name}`,
+};
+const action = church.forms?.action ?? (church.contact.email ? `mailto:${church.contact.email}` : undefined);
+const isMailto = !church.forms;
+const thanks = new URL(`/thanks/`, Astro.site).href;
+---
+{action ? (
+  <form class="stack" method="post" action={action} enctype={isMailto ? 'text/plain' : undefined}>
+    <input type="hidden" name="subject" value={subjects[kind]} />
+    <input type="hidden" name="form" value={kind} />
+    {church.forms?.accessKey && <input type="hidden" name="access_key" value={church.forms.accessKey} />}
+    {!isMailto && <input type="hidden" name="redirect" value={thanks} />}
+    <label class="hp" aria-hidden="true">Leave blank <input type="text" name="botcheck" tabindex="-1" autocomplete="off" /></label>
+    <div class="row2">
+      <label>Name <input name="name" required autocomplete="name" /></label>
+      <label>Email <input name="email" type="email" required autocomplete="email" /></label>
+    </div>
+    {kind === 'visit' && (
+      <div class="row2">
+        <label>Which Sunday?
+          <input name="visit_date" type="date" />
+        </label>
+        <label>How many are coming?
+          <select name="party">
+            <option>Just me</option><option>2</option><option>3–4</option><option>5+</option>
+          </select>
+        </label>
+      </div>
+    )}
+    {kind === 'visit' && (
+      <label>Bringing kids? Tell us their ages so we can have a spot ready.
+        <input name="kids" placeholder="e.g. 4 and 9" />
+      </label>
+    )}
+    {kind === 'prayer' && (
+      <label>
+        <span><input type="checkbox" name="confidential" value="yes" style="width:auto;display:inline" /> Keep this between me and the pastors</span>
+      </label>
+    )}
+    <label>{kind === 'prayer' ? 'How can we pray for you?' : kind === 'visit' ? 'Anything we should know? (optional)' : 'Message'}
+      <textarea name="message" required={kind !== 'visit'}></textarea>
+    </label>
+    <div><button class="btn" type="submit">{kind === 'prayer' ? 'Send prayer request' : kind === 'visit' ? "Let us know you're coming" : 'Send message'}</button></div>
+    <p class="form-note">We'll only use your details to reply to you.</p>
+  </form>
+) : (
+  <p>Email or call the church office using the details on this page.</p>
+)}

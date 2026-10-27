@@ -1,0 +1,11 @@
+---
+// Stand-in for YouTube and Calendar embeds on demo sites, which have no real channel.
+interface Props { text: string }
+const { text } = Astro.props;
+---
+<div class="embed" style="display:grid;place-items:center;background:var(--primary);color:#fff;text-align:center;padding:2rem">
+  <div style="max-width:36ch">
+    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="margin:0 auto 1rem;display:block;opacity:.9"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/><path d="M10 8.5v7l6-3.5-6-3.5z" fill="currentColor"/></svg>
+    <p style="margin:0;font-size:1.05rem">{text}</p>
+  </div>
+</div>

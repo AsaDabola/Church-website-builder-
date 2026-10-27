@@ -1,0 +1,27 @@
+{
+  "name": "church-website-builder",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/build.mjs --dev",
+    "build": "node scripts/build.mjs",
+    "build:all": "node scripts/build.mjs --all",
+    "validate": "node scripts/validate.mjs",
+    "new-church": "node scripts/new-church.mjs",
+    "check-links": "node scripts/check-links.mjs",
+    "report": "node scripts/monthly-report.mjs",
+    "business:dev": "astro dev --root business",
+    "business:build": "astro build --root business",
+    "leads:pull": "node leads/pull.mjs",
+    "leads:score": "node leads/score.mjs",
+    "leads:preview": "node leads/preview.mjs",
+    "leads:emails": "node leads/draft-emails.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.18.2",
+    "zod": "^3.25.76"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

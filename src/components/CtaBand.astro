@@ -1,0 +1,17 @@
+---
+import { pages } from '../lib/church';
+interface Props { heading: string; text?: string }
+const { heading, text } = Astro.props;
+---
+<section class="section cta-band">
+  <div class="container" style="display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;justify-content:space-between">
+    <div style="max-width:620px">
+      <h2>{heading}</h2>
+      {text && <p style="margin:0">{text}</p>}
+    </div>
+    <div class="btn-row">
+      {pages.includes('visit') && <a class="btn light" href="/visit/">Plan a visit</a>}
+      <a class="btn outline-light" href="/contact/">Contact us</a>
+    </div>
+  </div>
+</section>

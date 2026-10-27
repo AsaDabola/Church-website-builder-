@@ -1,0 +1,17 @@
+---
+// DRAFT. The binding terms for clients are in the signed service agreement (docs/service-agreement-draft.md).
+import Layout from '../layouts/Layout.astro';
+import { brand, pricing } from '../data/site.mjs';
+---
+<Layout title="Terms of use">
+  <section class="section"><div class="narrow prose">
+    <h1>Terms of use</h1>
+    <p>These terms cover use of {brand.domain}. Client work is governed by the separate service agreement each church signs, which controls if anything here differs.</p>
+    <h2>Prices</h2>
+    <p>Prices on this site are in US dollars and may change; the price in your signed agreement is the price you pay for its term. Plans have a {pricing.terms.minimumMonths}-month minimum.</p>
+    <h2>Previews</h2>
+    <p>Free website previews we create for churches are demonstrations only, are hidden from search engines and are removed on request.</p>
+    <h2>Contact</h2>
+    <p>{brand.name}, {brand.mailingAddress}. <a href={`mailto:${brand.email}`}>{brand.email}</a></p>
+  </div></section>
+</Layout>

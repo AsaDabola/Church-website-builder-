@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Pricing from '../../components/Pricing.astro';
+import { brand } from '../../data/site.mjs';
+import data from '../../data/towns.json';
+
+export function getStaticPaths() {
+  // Only towns with a real example and their own written content get a page.
+  return data.towns.filter((t) => t.example && t.intro && t.local).map((t) => ({ params: { town: t.slug }, props: { t } }));
+}
+const { t } = Astro.props as { t: any };
+---
+<Layout title={`Church website design in ${t.town}, ${t.state}`} description={`Done-for-you church websites for ${t.town}, ${t.state}. Hosting, security and edits for a flat monthly fee.`}>
+  <section class="section">
+    <div class="narrow">
+      <span class="eyebrow">{t.town}, {t.state}</span>
+      <h1>Church website design in {t.town}</h1>
+      <p class="lead">{t.intro}</p>
+      <p>{t.local}</p>
+      <div class="card" style="margin:2rem 0">
+        <span class="eyebrow">Local example</span>
+        <h3>{t.example.name}</h3>
+        <p class="muted">{t.example.summary}</p>
+        <a href={t.example.url}>Visit the site →</a>
+      </div>
+      <a class="btn" href={brand.bookingUrl}>Book a 20-minute call</a>
+    </div>
+  </section>
+  <section class="section tint"><div class="wrap"><Pricing /></div></section>
+</Layout>

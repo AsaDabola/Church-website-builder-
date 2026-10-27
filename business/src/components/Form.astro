@@ -1,0 +1,14 @@
+---
+// Posts to the form service in brand.json (formAction / formAccessKey).
+import { brand } from '../data/site.mjs';
+interface Props { subject: string; submit: string }
+const { subject, submit } = Astro.props;
+---
+<form method="post" action={brand.formAction}>
+  <input type="hidden" name="access_key" value={brand.formAccessKey} />
+  <input type="hidden" name="subject" value={subject} />
+  <input type="hidden" name="redirect" value={`https://${brand.domain}/thanks/`} />
+  <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+  <slot />
+  <div><button class="btn" type="submit">{submit}</button></div>
+</form>

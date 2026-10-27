@@ -1,0 +1,37 @@
+{
+  "slug": "TODO-slug",
+  "name": "TODO Church Name",
+  "tier": "essentials",
+  "preset": "heritage",
+  "tagline": "TODO short tagline",
+  "contact": {
+    "email": "office@example.org",
+    "phone": "TODO (000) 000-0000",
+    "address": { "street": "TODO 1 Main Street", "city": "TODO", "state": "NJ", "zip": "00000" }
+  },
+  "serviceTimes": [
+    { "day": "Sunday", "time": "10:00 AM", "label": "Worship" }
+  ],
+  "specialServices": [],
+  "hero": {
+    "headline": "TODO A one-line welcome in the church's own words",
+    "subhead": "TODO One or two sentences about who they are."
+  },
+  "welcome": {
+    "heading": "TODO Welcome",
+    "paragraphs": ["TODO Draft from their bulletin, old site and intake answers. Pastor approves."]
+  },
+  "about": {
+    "story": ["TODO Church history and who they are today."],
+    "beliefs": []
+  },
+  "staff": [
+    { "name": "TODO Pastor Name", "role": "Pastor", "bio": "TODO" }
+  ],
+  "ministries": [],
+  "visit": {
+    "kids": "TODO What happens for kids on Sunday.",
+    "parking": "TODO Where to park."
+  },
+  "social": {}
+}

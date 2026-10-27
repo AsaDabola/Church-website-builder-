@@ -1,0 +1,127 @@
+---
+import Base from '../layouts/Base.astro';
+import ServiceTimes from '../components/ServiceTimes.astro';
+import SpecialServices from '../components/SpecialServices.astro';
+import CtaBand from '../components/CtaBand.astro';
+import EmbedPlaceholder from '../components/EmbedPlaceholder.astro';
+import { church, pages, img, sermonEmbedUrl, fullAddress, directionsUrl, mapEmbedUrl } from '../lib/church';
+
+const heroImage = img(church.hero.image);
+const sermon = pages.includes('sermons') ? sermonEmbedUrl() ?? (church.demo ? 'placeholder' : undefined) : undefined;
+const featuredMinistries = pages.includes('ministries') ? church.ministries.slice(0, 3) : [];
+const highlights = pages.includes('events') ? (church.events?.highlights ?? []).slice(0, 3) : [];
+---
+<Base>
+  <section class:list={['hero', { 'no-image': !heroImage }]} style={heroImage ? `background-image:url('${heroImage}')` : undefined}>
+    <div class="container">
+      {church.denomination && <span class="eyebrow" style="color:#fff;opacity:.85">{church.denomination}</span>}
+      <h1>{church.hero.headline}</h1>
+      {church.hero.subhead && <p>{church.hero.subhead}</p>}
+      <div class="times-inline">
+        {church.serviceTimes.map((t) => <span>{t.day}s at {t.time}{t.label && ` · ${t.label}`}</span>)}
+      </div>
+      <div class="btn-row">
+        {pages.includes('visit') && <a class="btn light" href="/visit/">Plan your visit</a>}
+        {directionsUrl() && <a class="btn outline-light" href={directionsUrl()}>Get directions</a>}
+      </div>
+    </div>
+  </section>
+
+  {church.welcome && (
+    <section class="section">
+      <div class="narrow">
+        <span class="eyebrow">Welcome</span>
+        <h2>{church.welcome.heading}</h2>
+        {church.welcome.paragraphs.map((p) => <p class="lead">{p}</p>)}
+      </div>
+    </section>
+  )}
+
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Join us</span>
+        <h2>Service times</h2>
+        {fullAddress() && <p class="muted">{fullAddress()}</p>}
+      </div>
+      <ServiceTimes />
+      <SpecialServices />
+    </div>
+  </section>
+
+  {sermon && (
+    <section class="section">
+      <div class="container split">
+        <div>
+          <span class="eyebrow">Latest message</span>
+          <h2>Catch up on Sunday</h2>
+          <p class="lead">Missed a week or want to hear it again? Our most recent sermons are always here.</p>
+          <a class="btn ghost" href="/sermons/">All sermons</a>
+        </div>
+        {sermon === 'placeholder'
+          ? <EmbedPlaceholder text="This week's sermon from YouTube plays here automatically." />
+          : <div class="embed"><iframe src={sermon} title="Latest sermons" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>}
+      </div>
+    </section>
+  )}
+
+  {featuredMinistries.length > 0 && (
+    <section class:list={['section', { alt: !!sermon }]}>
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Get connected</span>
+          <h2>There's a place for you here</h2>
+        </div>
+        <div class="grid three">
+          {featuredMinistries.map((m) => (
+            <div class="card">
+              {m.image && <img class="cover" src={img(m.image)} alt="" loading="lazy" />}
+              <h3>{m.name}</h3>
+              <p>{m.description}</p>
+              {m.schedule && <p class="muted" style="margin:0">{m.schedule}</p>}
+            </div>
+          ))}
+        </div>
+        <p style="margin-top:1.5rem"><a href="/ministries/">See all ministries →</a></p>
+      </div>
+    </section>
+  )}
+
+  {highlights.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Coming up</span>
+          <h2>Events</h2>
+        </div>
+        <div class="grid three">
+          {highlights.map((e) => (
+            <div class="card">
+              {e.date && <div class="eyebrow">{e.date}</div>}
+              <h3>{e.title}</h3>
+              {e.description && <p style="margin:0">{e.description}</p>}
+            </div>
+          ))}
+        </div>
+        <p style="margin-top:1.5rem"><a href="/events/">Full calendar →</a></p>
+      </div>
+    </section>
+  )}
+
+  {mapEmbedUrl() && !featuredMinistries.length && (
+    <section class="section">
+      <div class="container split">
+        <div>
+          <span class="eyebrow">Find us</span>
+          <h2>Where we meet</h2>
+          <p class="lead">{fullAddress()}</p>
+          {church.visit.parking && <p>{church.visit.parking}</p>}
+          <a class="btn ghost" href={directionsUrl()}>Directions</a>
+        </div>
+        <iframe class="map" src={mapEmbedUrl()} title="Map" loading="lazy"></iframe>
+      </div>
+    </section>
+  )}
+
+  <CtaBand heading="New here? We'd love to meet you." text="Let us know you're coming and someone will be at the door to say hello." />
+</Base>

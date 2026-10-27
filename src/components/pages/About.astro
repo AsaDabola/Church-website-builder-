@@ -1,0 +1,42 @@
+---
+import PageHero from '../PageHero.astro';
+import Staff from '../Staff.astro';
+import CtaBand from '../CtaBand.astro';
+import { church } from '../../lib/church';
+const { story, beliefs, beliefsUrl } = church.about;
+---
+<PageHero title={`About ${church.shortName ?? church.name}`} intro={church.tagline} />
+{story.length > 0 && (
+  <section class="section">
+    <div class="narrow prose">
+      <span class="eyebrow">Our story</span>
+      {story.map((p) => <p class="lead">{p}</p>)}
+    </div>
+  </section>
+)}
+{beliefs.length > 0 && (
+  <section class="section alt">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">What we believe</span>
+        <h2>Our beliefs</h2>
+      </div>
+      <div class="grid two">
+        {beliefs.map((b) => <div class="card"><h3>{b.title}</h3><p style="margin:0">{b.text}</p></div>)}
+      </div>
+      {beliefsUrl && <p style="margin-top:1.5rem"><a href={beliefsUrl}>Read our full statement of faith →</a></p>}
+    </div>
+  </section>
+)}
+{church.staff.length > 0 && (
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Leadership</span>
+        <h2>Meet our team</h2>
+      </div>
+      <Staff />
+    </div>
+  </section>
+)}
+<CtaBand heading="Come see for yourself" text="The best way to get to know us is to visit on a Sunday." />

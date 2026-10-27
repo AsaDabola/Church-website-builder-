@@ -1,0 +1,33 @@
+---
+// Every inner page. Which ones exist depends on the church's tier and content (lib/schema.mjs).
+import Base from '../layouts/Base.astro';
+import About from '../components/pages/About.astro';
+import Visit from '../components/pages/Visit.astro';
+import Sermons from '../components/pages/Sermons.astro';
+import Events from '../components/pages/Events.astro';
+import Ministries from '../components/pages/Ministries.astro';
+import Give from '../components/pages/Give.astro';
+import Contact from '../components/pages/Contact.astro';
+import { pages, PAGE_TITLES, church } from '../lib/church';
+
+export function getStaticPaths() {
+  return pages.map((page) => ({ params: { page } }));
+}
+
+const views = { about: About, visit: Visit, sermons: Sermons, events: Events, ministries: Ministries, give: Give, contact: Contact };
+const { page } = Astro.params as { page: keyof typeof views };
+const View = views[page];
+const city = church.contact.address?.city;
+const descriptions: Record<string, string> = {
+  about: `Who we are and what we believe at ${church.name}.`,
+  visit: `Planning your first visit to ${church.name}${city ? ` in ${city}` : ''}: service times, parking, kids and what to expect.`,
+  sermons: `Watch and listen to recent sermons from ${church.name}.`,
+  events: `Upcoming events and calendar for ${church.name}.`,
+  ministries: `Groups, classes and ministries at ${church.name}.`,
+  give: `Give online to support the ministry of ${church.name}.`,
+  contact: `Contact ${church.name}: address, phone, email and prayer requests.`,
+};
+---
+<Base title={PAGE_TITLES[page]} description={descriptions[page]}>
+  <View />
+</Base>

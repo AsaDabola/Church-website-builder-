@@ -1,0 +1,85 @@
+{
+  "slug": "riverlight-church",
+  "name": "Riverlight Church",
+  "tier": "custom",
+  "preset": "modern",
+  "demo": true,
+  "denomination": "Non-denominational",
+  "tagline": "Real faith for real life",
+  "logo": "images/logo.svg",
+  "colors": { "primary": "#111418", "accent": "#ff6a3d" },
+  "fonts": { "heading": "Space Grotesk", "body": "Inter" },
+  "seo": { "description": "Riverlight Church in Rivermont, NJ. Modern worship, practical teaching and a great kids program. Sundays at 9 & 11 AM." },
+  "contact": {
+    "email": "hello@riverlight-demo.example",
+    "phone": "(609) 555-0187",
+    "address": { "street": "400 Riverside Drive", "city": "Rivermont", "state": "NJ", "zip": "08000" },
+    "officeHours": "Monday to Thursday, 9 AM to 4 PM"
+  },
+  "serviceTimes": [
+    { "day": "Sunday", "time": "9:00 AM", "label": "Gathering", "note": "Kids & students programs" },
+    { "day": "Sunday", "time": "11:00 AM", "label": "Gathering", "note": "Kids program, livestreamed" }
+  ],
+  "specialServices": [
+    { "title": "Christmas at Riverlight", "date": "2026-12-24", "times": ["3:00 PM", "5:00 PM", "7:00 PM"], "note": "Family-friendly services with candlelight. Kids programs at 3 and 5 PM." }
+  ],
+  "hero": {
+    "headline": "You don't have to have it all figured out.",
+    "subhead": "Riverlight is a church for people who are curious, skeptical, hurting or hopeful. Come as you are.",
+    "image": "images/hero.svg"
+  },
+  "welcome": {
+    "heading": "Church that feels like home",
+    "paragraphs": [
+      "Riverlight started in 2016 with twelve people in a living room. Today we're a family of all ages who meet by the river every Sunday for honest worship and teaching you can use on Monday."
+    ]
+  },
+  "about": {
+    "story": [
+      "We believe church should be the most welcoming place in town. That's why you'll find great coffee, a safe and fun kids area, and people who are glad you came.",
+      "Our mission is simple: help people find and follow Jesus, together."
+    ],
+    "beliefs": [
+      { "title": "Jesus changes everything", "text": "We believe Jesus is the Son of God, who died and rose again so we could be made right with God." },
+      { "title": "The Bible", "text": "We believe the Bible is God's Word, true and trustworthy, and it shapes how we live." },
+      { "title": "Everyone belongs", "text": "No matter your story, there is a place for you at Riverlight." },
+      { "title": "Better together", "text": "Faith grows in community, so we do life together in small groups across the area." }
+    ]
+  },
+  "staff": [
+    { "name": "Marcus & Jen Holloway", "role": "Lead Pastors", "bio": "Marcus and Jen started Riverlight in their living room. They have three kids and a very loud dog." },
+    { "name": "Priya Natarajan", "role": "Kids Director", "bio": "Priya leads RiverKids and makes sure every child is known by name." },
+    { "name": "Dev Carter", "role": "Worship & Creative", "bio": "Dev leads our worship team and runs the livestream." },
+    { "name": "Alicia Gomez", "role": "Groups & Care", "bio": "Alicia helps people get connected to a small group and coordinates care for families in need." }
+  ],
+  "ministries": [
+    { "name": "RiverKids", "description": "Safe, fun and Bible-based programs for birth through 5th grade, with secure check-in.", "schedule": "Sundays at 9 & 11 AM" },
+    { "name": "Students", "description": "Middle and high school students hang out, worship and dig into real questions.", "schedule": "Wednesdays at 7 PM" },
+    { "name": "Small Groups", "description": "Groups meet in homes across Mercer and Bucks counties to share meals, study and pray.", "schedule": "Weeknights, various locations" },
+    { "name": "Serve Team", "description": "Coffee, greeting, kids, tech, parking. Find your spot and make Sundays happen.", "schedule": "Sundays" },
+    { "name": "Rivermont Outreach", "description": "Monthly service projects with local schools, shelters and food banks.", "schedule": "Third Saturday of each month" },
+    { "name": "Recovery Night", "description": "A Christ-centered recovery group for any hurt, habit or hang-up.", "schedule": "Mondays at 7 PM" }
+  ],
+  "sermons": { "note": "Every message, every week. Watch on demand or join us live at 11 AM on Sundays." },
+  "livestream": { "url": "https://www.youtube.com/", "note": "We stream the 11 AM gathering live every Sunday." },
+  "events": {
+    "highlights": [
+      { "title": "Friendsgiving", "date": "November 22", "description": "Bring a dish and a friend after the 11 AM gathering." },
+      { "title": "Serve Day", "date": "December 5", "description": "Teams fan out across Rivermont to serve our neighbors." },
+      { "title": "Christmas at Riverlight", "date": "December 24", "description": "3, 5 & 7 PM. Invite someone!" }
+    ]
+  },
+  "giving": { "url": "https://example.org/give", "provider": "secure online giving", "message": "Generosity changes lives, starting with ours. Thank you for supporting what God is doing at Riverlight." },
+  "visit": {
+    "intro": "Sundays at Riverlight are relaxed, upbeat and about 70 minutes long. Here's what to expect.",
+    "expect": [
+      { "title": "Grab a coffee", "text": "Our café opens 30 minutes before each gathering. First cup is always on us." },
+      { "title": "Modern worship", "text": "Our band plays current worship music, and lyrics are on the screens." },
+      { "title": "Practical teaching", "text": "Messages are about 30 minutes, rooted in the Bible and focused on everyday life." }
+    ],
+    "kids": "RiverKids has a secure check-in at the kids entrance. Your child will get a name tag and you'll get a matching pickup tag. Arrive 10 minutes early on your first visit.",
+    "parking": "Free parking in the main lot. Look for the reserved first-time guest spots by the front doors.",
+    "accessibility": "The building is fully accessible, with reserved seating near the front."
+  },
+  "social": { "instagram": "https://www.instagram.com/", "youtube": "https://www.youtube.com/", "facebook": "https://www.facebook.com/" }
+}

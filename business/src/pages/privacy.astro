@@ -1,0 +1,22 @@
+---
+// DRAFT. Have the lawyer review alongside the service agreement.
+import Layout from '../layouts/Layout.astro';
+import { brand } from '../data/site.mjs';
+---
+<Layout title="Privacy policy">
+  <section class="section"><div class="narrow prose">
+    <h1>Privacy policy</h1>
+    <p class="muted">Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</p>
+    <p>{brand.name} ("we") builds and maintains websites for churches. This policy covers this website ({brand.domain}).</p>
+    <h2>What we collect</h2>
+    <p>When you fill out a form (a call booking, audit request or intake form), we collect what you enter, such as your name, email, church name and website. We do not use advertising trackers.</p>
+    <h2>How we use it</h2>
+    <p>Only to reply to you, deliver the service you asked about and send occasional service emails. We never sell your information.</p>
+    <h2>Who else handles it</h2>
+    <p>Our form, scheduling, email, hosting (Cloudflare) and payment (Stripe) providers process data on our behalf under their own privacy policies.</p>
+    <h2>Your choices</h2>
+    <p>Email <a href={`mailto:${brand.email}`}>{brand.email}</a> to see, correct or delete your information, or to stop hearing from us.</p>
+    <h2>Church websites we host</h2>
+    <p>Each church controls the content of its own site and the messages submitted through its forms.</p>
+  </div></section>
+</Layout>

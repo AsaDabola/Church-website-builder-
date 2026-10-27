@@ -1,0 +1,17 @@
+---
+// Upcoming special services. Past ones are removed in the browser by Announcement's script.
+import { church, formatDate } from '../lib/church';
+const list = [...church.specialServices].sort((a, b) => a.date.localeCompare(b.date));
+---
+{list.length > 0 && (
+  <div id="special" class="grid two" style="margin-top: 2rem">
+    {list.map((s) => (
+      <div class="special" data-until={s.showUntil ?? s.date}>
+        <div class="date">{formatDate(s.date)}</div>
+        <h3>{s.title}</h3>
+        <p style="margin:0"><strong>{s.times.join(' & ')}</strong>{s.location && ` · ${s.location}`}</p>
+        {s.note && <p class="muted" style="margin:0.5rem 0 0">{s.note}</p>}
+      </div>
+    ))}
+  </div>
+)}

@@ -1,0 +1,18 @@
+{
+  "_note": "Towns within about an hour of Trenton. Add or remove freely; each town costs one SerpApi search per query (per page).",
+  "towns": [
+    "Trenton, NJ", "Hamilton, NJ", "Ewing, NJ", "Lawrence Township, NJ", "Princeton, NJ",
+    "Robbinsville, NJ", "Hopewell, NJ", "Pennington, NJ", "West Windsor, NJ", "East Windsor, NJ",
+    "Hightstown, NJ", "Plainsboro, NJ", "Bordentown, NJ", "Burlington, NJ", "Florence, NJ",
+    "Mount Holly, NJ", "Willingboro, NJ", "Moorestown, NJ", "Mount Laurel, NJ", "Cherry Hill, NJ",
+    "Allentown, NJ", "Freehold, NJ", "Jackson, NJ", "Lakewood, NJ", "Monroe Township, NJ",
+    "New Brunswick, NJ", "Piscataway, NJ", "Edison, NJ", "Old Bridge, NJ", "Somerville, NJ",
+    "Flemington, NJ", "Lambertville, NJ", "Camden, NJ", "Toms River, NJ",
+    "Morrisville, PA", "Yardley, PA", "Newtown, PA", "Levittown, PA", "Bristol, PA", "Doylestown, PA"
+  ],
+  "queries": ["church"],
+  "deepQueries": [
+    "baptist church", "methodist church", "presbyterian church", "lutheran church", "episcopal church",
+    "AME church", "pentecostal church", "non-denominational church", "community church", "evangelical church"
+  ]
+}

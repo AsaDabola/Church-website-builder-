@@ -1,0 +1,14 @@
+---
+import { church, img } from '../lib/church';
+---
+<div class="grid three">
+  {church.staff.map((p) => (
+    <div class="staff">
+      {p.photo ? <img src={img(p.photo)} alt={p.name} loading="lazy" width="400" height="400" /> : <div class="avatar" aria-hidden="true">{p.name.split(' ').map((w) => w[0]).slice(0, 2).join('')}</div>}
+      <h3>{p.name}</h3>
+      <div class="role">{p.role}</div>
+      {p.bio && <p>{p.bio}</p>}
+      {p.email && <a href={`mailto:${p.email}`}>{p.email}</a>}
+    </div>
+  ))}
+</div>

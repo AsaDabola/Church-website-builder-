@@ -1,0 +1,22 @@
+---
+import PageHero from '../PageHero.astro';
+import CtaBand from '../CtaBand.astro';
+import { church, img } from '../../lib/church';
+---
+<PageHero title="Ministries" intro="Ways to grow, serve and belong, for every age and stage." />
+<section class="section">
+  <div class="container">
+    <div class="grid three">
+      {church.ministries.map((m) => (
+        <div class="card">
+          {m.image && <img class="cover" src={img(m.image)} alt="" loading="lazy" />}
+          <h3>{m.name}</h3>
+          <p>{m.description}</p>
+          {m.schedule && <p class="muted" style="margin:0 0 .5rem"><strong>When:</strong> {m.schedule}</p>}
+          {m.contact && <p class="muted" style="margin:0"><strong>Contact:</strong> {m.contact}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+<CtaBand heading="Want to get involved?" text="Reach out and we'll help you find the right group." />

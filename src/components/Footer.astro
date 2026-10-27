@@ -1,0 +1,47 @@
+---
+import { church, nav, brand, fullAddress, directionsUrl } from '../lib/church';
+const year = new Date().getFullYear();
+const social = Object.entries(church.social).filter(([, v]) => v) as [string, string][];
+const names: Record<string, string> = { facebook: 'Facebook', instagram: 'Instagram', youtube: 'YouTube' };
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h3>{church.name}</h3>
+        {fullAddress() && (
+          <p>
+            {church.contact.address!.street}<br />
+            {church.contact.address!.city}, {church.contact.address!.state} {church.contact.address!.zip}<br />
+            <a href={directionsUrl()}>Get directions</a>
+          </p>
+        )}
+      </div>
+      <div>
+        <h3>Sunday Gatherings</h3>
+        <ul>
+          {church.serviceTimes.map((t) => <li>{t.day} {t.time}{t.label && ` · ${t.label}`}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h3>Get in Touch</h3>
+        <ul>
+          {church.contact.phone && <li><a href={`tel:${church.contact.phone.replace(/[^\d+]/g, '')}`}>{church.contact.phone}</a></li>}
+          {church.contact.email && <li><a href={`mailto:${church.contact.email}`}>{church.contact.email}</a></li>}
+          {church.contact.officeHours && <li>{church.contact.officeHours}</li>}
+          {social.map(([k, v]) => <li><a href={v} rel="noopener">{names[k] ?? k}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <h3>Explore</h3>
+        <ul>
+          {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>&copy; {year} {church.name}</span>
+      <span>Website by <a href={`https://${brand.domain}`}>{brand.name}</a></span>
+    </div>
+  </div>
+</footer>

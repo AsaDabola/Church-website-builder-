@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Pricing from '../components/Pricing.astro';
+import { pricing, brand } from '../data/site.mjs';
+const { terms } = pricing;
+---
+<Layout title="Pricing" description="Church website plans from $49/month: Essentials, Ministry and Custom. Hosting, security and edits included.">
+  <section class="section">
+    <div class="wrap">
+      <span class="eyebrow">Pricing</span>
+      <h1>Plans for every size of church</h1>
+      <p class="lead">Every plan includes hosting, SSL, backups, security updates and a real person to email when you need a change.</p>
+      <div style="margin-top:2.5rem"><Pricing /></div>
+    </div>
+  </section>
+  <section class="section tint">
+    <div class="wrap grid g2">
+      <div>
+        <h2>Add-ons</h2>
+        <div class="card">
+          <table>
+            {pricing.addons.map((a) => <tr><td>{a.name}</td><td class="r"><strong>${a.price}</strong> <span class="muted">{a.unit}</span></td></tr>)}
+            <tr><td>Upgrade between plans</td><td class="r muted">anytime; pay the setup fee difference</td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h2>The fine print, in plain English</h2>
+        <ul class="card terms">
+          <li>{terms.minimumMonths}-month minimum on every plan, then month to month.</li>
+          <li>Cancel early and you pay the remaining months or a ${terms.earlyExitFee} exit fee, whichever is lower.</li>
+          <li>Billed monthly by card or bank transfer (ACH), automatically.</li>
+          <li>Pay a year up front: {terms.annualPrepayMonths} months' price for 12.</li>
+          <li>Your church owns its content and domain. Leave anytime with a full export of your site.</li>
+          <li>Your monthly plan starts the month your site goes live.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="narrow" style="text-align:center">
+      <h2>Not sure which plan fits?</h2>
+      <p class="lead">Most churches with a weekly sermon video pick Ministry. We'll help you choose on a quick call.</p>
+      <a class="btn" href={brand.bookingUrl}>Book a 20-minute call</a>
+    </div>
+  </section>
+</Layout>
+<style>
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: .7rem 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  .r { text-align: right; padding-left: 1rem; }
+  .terms { padding-left: 2.6rem; margin: 0; }
+  .terms li { margin-bottom: .5rem; }
+</style>

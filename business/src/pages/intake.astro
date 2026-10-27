@@ -1,0 +1,66 @@
+---
+// Content intake form for signed clients. Building starts when this is complete.
+// The answers map one-to-one onto churches/<slug>/church.json (see docs/intake-form.md).
+import Layout from '../layouts/Layout.astro';
+import Form from '../components/Form.astro';
+import { brand } from '../data/site.mjs';
+---
+<Layout title="Client intake form" description="Content intake form for new church website clients.">
+  <section class="section">
+    <div class="narrow">
+      <span class="eyebrow">New clients</span>
+      <h1>Let's build your site</h1>
+      <p class="lead">This takes about 20 minutes. Don't worry about polished wording; we'll draft the copy and you'll approve every page. Skip anything that doesn't apply.</p>
+      <Form subject="New client intake" submit="Send my answers">
+        <fieldset>
+          <legend>Your church</legend>
+          <label>Church name <input name="church_name" required /></label>
+          <label>Short name people use <span class="hint">e.g. "Old Stone" (optional)</span><input name="short_name" /></label>
+          <label>Denomination or affiliation <input name="denomination" /></label>
+          <label>Street address <input name="address" required /></label>
+          <div class="grid g2"><label>Church phone <input name="phone" /></label><label>Church email <input name="email" type="email" /></label></div>
+          <label>Office hours <input name="office_hours" placeholder="Tue–Thu, 9 AM to 1 PM" /></label>
+          <label>Your name and role <input name="contact_person" required /></label>
+          <label>Plan <select name="plan"><option>Essentials</option><option selected>Ministry</option><option>Custom</option></select></label>
+        </fieldset>
+        <fieldset>
+          <legend>Services</legend>
+          <label>Weekly service times <span class="hint">One per line, e.g. "Sunday 10:30 AM, Worship, nursery available"</span><textarea name="service_times" required></textarea></label>
+          <label>Special services coming up <span class="hint">Christmas Eve, Easter... with dates and times</span><textarea name="special_services"></textarea></label>
+        </fieldset>
+        <fieldset>
+          <legend>Your story</legend>
+          <label>In a sentence or two, who is your church? <textarea name="who_we_are"></textarea></label>
+          <label>Church history <span class="hint">Founding year, building, milestones</span><textarea name="history"></textarea></label>
+          <label>Beliefs or statement of faith <span class="hint">Paste it, or link to it</span><textarea name="beliefs"></textarea></label>
+          <label>What should a first-time visitor know? <span class="hint">What worship is like, dress, how long, coffee...</span><textarea name="first_visit"></textarea></label>
+          <label>Kids and nursery <textarea name="kids"></textarea></label>
+          <label>Parking and accessibility <textarea name="parking"></textarea></label>
+        </fieldset>
+        <fieldset>
+          <legend>People and ministries</legend>
+          <label>Staff and leaders <span class="hint">Name, role, short bio and email for each</span><textarea name="staff"></textarea></label>
+          <label>Ministries and groups <span class="hint">Name, what it is, when it meets, who to contact</span><textarea name="ministries"></textarea></label>
+        </fieldset>
+        <fieldset>
+          <legend>Links</legend>
+          <label>Online giving page <input name="giving_url" type="url" placeholder="https://" /></label>
+          <label>YouTube channel (for sermons) <input name="youtube" type="url" placeholder="https://www.youtube.com/@yourchurch" /></label>
+          <label>Livestream link <input name="livestream" type="url" placeholder="https://" /></label>
+          <label>Google Calendar for events <span class="hint">We'll send instructions to share it</span><input name="calendar" /></label>
+          <label>Facebook / Instagram <input name="social" /></label>
+          <label>Current website, bulletins or newsletters we can draft from <textarea name="source_material"></textarea></label>
+        </fieldset>
+        <fieldset>
+          <legend>Photos, logo and domain</legend>
+          <label>Link to a shared folder with your logo and photos <span class="hint">Google Drive, Dropbox or iCloud. Real photos of your people and building make the biggest difference.</span><input name="photos_link" type="url" placeholder="https://" /></label>
+          <label>Your domain <input name="domain" placeholder="yourchurch.org" /></label>
+          <label>Where is the domain registered? <span class="hint">GoDaddy, Google/Squarespace, Network Solutions... Please don't type passwords here. We'll set up access with you on a call.</span><input name="registrar" /></label>
+          <label>Colors or style you like <span class="hint">Or a website you admire</span><input name="style" /></label>
+        </fieldset>
+        <label>Anything else? <textarea name="notes"></textarea></label>
+      </Form>
+      <p class="muted" style="margin-top:1rem">Questions? Email <a href={`mailto:${brand.email}`}>{brand.email}</a>.</p>
+    </div>
+  </section>
+</Layout>

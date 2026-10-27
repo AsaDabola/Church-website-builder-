@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6f9bb8"/><stop offset="1" stop-color="#e9c98f"/></linearGradient>
+<radialGradient id="g" cx="0.86" cy="0.33" r="0.35"><stop offset="0" stop-color="#fff1c9" stop-opacity="0.9"/><stop offset="1" stop-color="#fff1c9" stop-opacity="0"/></radialGradient></defs>
+<rect width="1600" height="900" fill="url(#s)"/><rect width="1600" height="900" fill="url(#g)"/>
+<circle cx="1380" cy="300" r="60" fill="#fff1c9" opacity="0.85"/>
+<path d="M0 600 C 300 520 520 560 800 600 S 1300 520 1600 560 V900 H0Z" fill="#7f9b5e"/>
+<g transform="translate(760,0)"><g fill="#3a3a2c"><rect x="420" y="520" width="170" height="120"/><polygon points="410,525 505,450 600,525"/><rect x="480" y="380" width="50" height="150"/><polygon points="472,385 505,300 538,385"/><rect x="502" y="270" width="6" height="36"/><rect x="492" y="280" width="26" height="6"/></g>
+<g fill="#fff1c9" opacity="0.9"><rect x="440" y="560" width="22" height="34" rx="11"/><rect x="548" y="560" width="22" height="34" rx="11"/><rect x="493" y="580" width="24" height="60" rx="12"/><circle cx="505" cy="420" r="9"/></g></g>
+<path d="M0 680 C 350 610 650 700 1000 660 S 1400 620 1600 650 V900 H0Z" fill="#5e7a45"/>
+<path d="M0 780 C 400 730 800 800 1200 760 S 1500 740 1600 760 V900 H0Z" fill="#3f5b30"/>
+</svg>

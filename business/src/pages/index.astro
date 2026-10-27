@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Pricing from '../components/Pricing.astro';
+import { brand, pricing, examples, testimonials, faq } from '../data/site.mjs';
+const steps = [
+  { t: 'Tell us about your church', d: "A 20-minute call, then a short intake form: logo, photos, service times, staff and links. We'll write the first draft of every page from your bulletins and old site." },
+  { t: 'Review your new site', d: 'You get a private preview link in about two weeks. Ask for changes, and we make them. When you love it, we point your domain and go live.' },
+  { t: 'Email us changes, forever', d: 'Need the Christmas Eve times up? Send an email. It\'s done the same week. Sermons and events update themselves from YouTube and Google Calendar.' },
+];
+const pains = [
+  'Built by a volunteer who moved on, and nobody has the password',
+  'Service times from two years ago, or no service times at all',
+  'Hard to read on a phone, where most visitors find you',
+  'A DIY builder subscription that nobody on staff has time to learn',
+];
+---
+<Layout>
+  <section class="section hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Church websites for {brand.region}</span>
+        <h1>Your church website, done for you.</h1>
+        <p class="lead">We design it, host it, keep it secure and make your changes. You just send an email. One flat monthly fee, starting at ${pricing.tiers[0].monthly}.</p>
+        <div class="cta">
+          <a class="btn" href={brand.bookingUrl}>Book a 20-minute call</a>
+          <a class="btn ghost" href="#examples">See example sites</a>
+        </div>
+        <p class="muted small">Or get a <a href="/audit/">free 5-point audit</a> of your current site.</p>
+      </div>
+      <div class="card offer">
+        <span class="eyebrow">Launch offer</span>
+        <h3>Setup fee waived for our first {pricing.terms.launchOfferSpots} churches</h3>
+        <p>On Essentials or Ministry, in exchange for a short testimonial and permission to show your site as an example.</p>
+        <p class="muted" style="margin:0">Saves up to ${pricing.tiers[1].setup}.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint">
+    <div class="wrap">
+      <div class="narrow" style="margin-left:0">
+        <span class="eyebrow">Sound familiar?</span>
+        <h2>Church staff shouldn't have to be web designers</h2>
+      </div>
+      <div class="grid g4" style="margin-top:1.5rem">
+        {pains.map((p) => <div class="card">{p}</div>)}
+      </div>
+      <p class="lead" style="margin-top:1.5rem">Your website is often the first place a new family meets your church. We make sure it's welcoming, accurate and easy to find, without adding work to anyone's week.</p>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="wrap">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps, and then you never think about it again</h2>
+      <div class="grid g3" style="margin-top:1.5rem">
+        {steps.map((s, i) => <div class="card"><div class="num">{i + 1}</div><h3>{s.t}</h3><p class="muted" style="margin:0">{s.d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tint" id="examples">
+    <div class="wrap">
+      <span class="eyebrow">Examples</span>
+      <h2>See what your site could look like</h2>
+      <p class="lead">Every church gets its own colors, photos and words. Here are a few styles. Better yet, ask and we'll build a free preview of <em>your</em> church's new site before you pay anything.</p>
+      <div class="grid g3" style="margin-top:1.5rem">
+        {examples.map((e) => (
+          <a class="card example" href={e.url}>
+            <span class="eyebrow">{e.style} · {e.tier}</span>
+            <h3>{e.name}</h3>
+            <span class="muted">{e.demo ? 'Demo site for a fictional church' : 'Client site'} →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {testimonials.length > 0 && (
+    <section class="section">
+      <div class="wrap grid g2">
+        {testimonials.map((t) => <blockquote class="card"><p class="lead">"{t.quote}"</p><footer><strong>{t.name}</strong>, {t.church}</footer></blockquote>)}
+      </div>
+    </section>
+  )}
+
+  <section class="section" id="pricing">
+    <div class="wrap">
+      <span class="eyebrow">Pricing</span>
+      <h2>Simple, published prices</h2>
+      <p class="lead">A one-time setup fee, then one flat monthly fee for hosting, security and edits. <a href="/pricing/">Full details and add-ons →</a></p>
+      <div style="margin-top:2rem"><Pricing /></div>
+    </div>
+  </section>
+
+  <section class="section tint" id="faq">
+    <div class="narrow">
+      <span class="eyebrow">FAQ</span>
+      <h2>Questions pastors ask</h2>
+      {faq.map((f) => <details class="card faq"><summary>{f.q}</summary><p>{f.a}</p></details>)}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="narrow" style="text-align:center">
+      <h2>Let's talk about your church's website</h2>
+      <p class="lead">20 minutes, no pressure. We'll look at your current site together and recommend the right plan.</p>
+      <a class="btn" href={brand.bookingUrl}>Book a 20-minute call</a>
+      <p class="muted" style="margin-top:1rem">Or email <a href={`mailto:${brand.email}`}>{brand.email}</a></p>
+    </div>
+  </section>
+</Layout>
+<style>
+  .hero-grid { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); align-items: center; }
+  .cta { display: flex; flex-wrap: wrap; gap: .75rem; margin: 1.75rem 0 1rem; }
+  .small { font-size: .95rem; }
+  .g4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+  .offer { border: 2px dashed var(--brand-2); background: #fffaf0; }
+  .num { width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; font-weight: 700; margin-bottom: 1rem; }
+  .example { text-decoration: none; color: inherit; transition: transform .15s, box-shadow .15s; }
+  .example:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,.07); }
+  .faq { margin-bottom: .75rem; padding: 1.1rem 1.4rem; }
+  .faq summary { font-weight: 600; cursor: pointer; }
+  .faq p { margin: .75rem 0 0; color: var(--muted); }
+  blockquote { margin: 0; }
+</style>

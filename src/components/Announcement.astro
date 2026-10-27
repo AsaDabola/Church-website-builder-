@@ -1,0 +1,13 @@
+---
+// A bar at the top of every page for the next special service (Christmas Eve, Easter...).
+// Built statically, then hidden in the browser once its date has passed, so an old
+// announcement never lingers even if nobody rebuilds the site (script in Base.astro).
+import { church, formatDate, pages } from '../lib/church';
+const next = [...church.specialServices].sort((a, b) => a.date.localeCompare(b.date));
+const target = pages.includes('visit') ? '/visit/#special' : '/#special';
+---
+{next.map((s) => (
+  <div class="announce" data-until={s.showUntil ?? s.date} hidden>
+    {s.title}: {formatDate(s.date)}, {s.times.join(' & ')}. <a href={target}>Details</a>
+  </div>
+))}

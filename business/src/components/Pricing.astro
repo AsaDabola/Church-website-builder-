@@ -1,0 +1,29 @@
+---
+import { pricing, brand } from '../data/site.mjs';
+const { terms } = pricing;
+---
+<div class="grid g3 tiers">
+  {pricing.tiers.map((t) => (
+    <div class:list={['card', 'tier', { popular: t.popular }]}>
+      {t.popular && <span class="badge">Most churches pick this</span>}
+      <h3>{t.name}</h3>
+      <p class="muted">{t.summary}</p>
+      <div class="price"><span class="amount">${t.monthly}</span>/month</div>
+      <div class="muted">+ ${t.setup.toLocaleString()} one-time {t.setupLabel}</div>
+      <ul>{t.features.map((f) => <li>{f}</li>)}</ul>
+      <a class:list={['btn', { ghost: !t.popular }]} href={brand.bookingUrl}>Book a call</a>
+    </div>
+  ))}
+</div>
+<p class="muted terms">{terms.minimumMonths}-month plans, then month to month. Pay for a year up front and get {12 - terms.annualPrepayMonths} months free. Your church always owns its content and domain.</p>
+<style>
+  .tier { display: flex; flex-direction: column; gap: .35rem; position: relative; }
+  .tier ul { padding-left: 1.1rem; margin: 1rem 0 1.5rem; flex: 1; }
+  .tier li { margin-bottom: .35rem; }
+  .tier .btn { text-align: center; }
+  .popular { border: 2px solid var(--brand); box-shadow: 0 12px 30px rgba(45, 74, 122, .12); }
+  .badge { position: absolute; top: -12px; left: 1.6rem; background: var(--brand-2); color: #1b1f24; font-size: .78rem; font-weight: 700; padding: .2rem .7rem; border-radius: 999px; }
+  .price { margin-top: .5rem; }
+  .amount { font-family: Fraunces, Georgia, serif; font-size: 2.6rem; font-weight: 600; }
+  .terms { text-align: center; margin-top: 1.5rem; }
+</style>
